@@ -571,6 +571,14 @@ class Image
     {
         return $this->cacheFile('png');
     }
+    
+     /**
+     * Generates and output a webp cached file.
+     */
+    public function webp()
+    {
+        return $this->cacheFile('webp');
+    }
 
     /**
      * Generates and output an image using the same type as input.

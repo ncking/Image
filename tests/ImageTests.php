@@ -209,6 +209,14 @@ class ImageTests extends Base
         $i = imagecreatefromgif($output4);
         $this->assertSame(100, imagesx($i));
         $this->assertSame(50, imagesy($i));
+        
+        $output5 = $this->open('monalisa.jpg')
+            ->resize(100, 50)->negate()
+            ->webp();
+        $this->assertTrue(file_exists($output));
+        $i = imagecreatefromwebp($output5);
+        $this->assertSame(100, imagesx($i));
+        $this->assertSame(50, imagesy($i));
     }
 
     /**
