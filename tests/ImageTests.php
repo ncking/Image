@@ -107,6 +107,17 @@ class ImageTests extends Base
         $this->assertTrue(file_exists($black));
         $this->assertSame(150, imagesx($i));
         $this->assertSame(200, imagesy($i));
+        
+        
+        $black = $this->output('black.webp');
+        Image::create(150, 200)
+            ->fill('black')
+            ->save($black, 'webp');
+
+        $i = imagecreatefromwebp($black);
+        $this->assertTrue(file_exists($black));
+        $this->assertSame(150, imagesx($i));
+        $this->assertSame(200, imagesy($i));
     }
 
     /**
@@ -120,6 +131,8 @@ class ImageTests extends Base
         $this->assertSame('png', $image->guessType());
         $image = $this->open('monalisa.gif');
         $this->assertSame('gif', $image->guessType());
+        $image = $this->open('monalisa.webp');
+        $this->assertSame('webp', $image->guessType());
     }
 
     public function testDefaultCacheSystem()
