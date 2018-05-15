@@ -95,6 +95,7 @@ class Image
         'jpeg'  => 'jpeg',
         'png'   => 'png',
         'gif'   => 'gif',
+        'webp'  => 'webp'
     );
 
     /**
@@ -674,6 +675,10 @@ class Image
                 $success = $this->getAdapter()->savePng($file);
             }
 
+            if ($type == 'webp') {
+                $success = $this->getAdapter()->saveWebp($file, $quality);
+            }
+            
             if (!$success) {
                 return false;
             }
